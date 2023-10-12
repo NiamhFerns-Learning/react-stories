@@ -15,19 +15,25 @@ export function ItemAdder({ onAdd }: { onAdd: (item: ToDoItem) => void }) {
     title: '',
     description: '',
     added: '',
-    started: '',
     completed: '',
     status: '',
   });
 
   const handleSubmit = (e: SyntheticEvent): void => {
     e.preventDefault();
-    onAdd(new ToDoItem(form.title, '', '', '', '', ''));
+    onAdd(
+      new ToDoItem(
+        form.title,
+        form.description,
+        form.added,
+        form.completed,
+        form.status,
+      ),
+    );
     setForm({
       title: '',
       description: '',
       added: '',
-      started: '',
       completed: '',
       status: '',
     });
@@ -54,31 +60,52 @@ export function ItemAdder({ onAdd }: { onAdd: (item: ToDoItem) => void }) {
         <div>
           <label>
             Description
-            <input type='text' placeholder='Describe your task...'></input>
+            <input
+              type='text'
+              placeholder='Describe your task...'
+              value={form.description}
+              onChange={(e) => {
+                setForm({ ...form, description: e.target.value });
+              }}
+              required
+            ></input>
           </label>
         </div>
         <div>
           <label>
             Date Added
-            <input type='date'></input>
-          </label>
-        </div>
-        <div>
-          <label>
-            Date Started
-            <input type='date'></input>
+            <input
+              type='date'
+              value={form.added}
+              onChange={(e) => {
+                setForm({ ...form, added: e.target.value });
+              }}
+            ></input>
           </label>
         </div>
         <div>
           <label>
             Date Completed
-            <input type='date'></input>
+            <input
+              type='date'
+              value={form.completed}
+              onChange={(e) => {
+                setForm({ ...form, completed: e.target.value });
+              }}
+            ></input>
           </label>
         </div>
         <div>
           <label>
             Status
-            <select name='status' id='status'>
+            <select
+              name='status'
+              id='status'
+              value={'Not Started'}
+              onChange={(e) => {
+                setForm({ ...form, status: e.target.value });
+              }}
+            >
               {statusOptions.map((option) => (
                 <option key={option} value={option}>
                   {option
