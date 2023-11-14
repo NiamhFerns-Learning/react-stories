@@ -1,28 +1,23 @@
 import { SyntheticEvent, useState } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import { ToDoItem } from './ToDoItem';
+import { Story } from './Story';
 import { ItemAdder } from './ItemAdder';
-import { ToDoList } from './ToDoList';
 
 function App() {
-  const [toDoItems, setToDoItems] = useState<ToDoItem[]>([]);
+  const [toDoItems, setToDoItems] = useState<Story[]>([]);
 
-  const addToDo = (item: ToDoItem) => {
-    setToDoItems([...toDoItems, item]);
+  const addToDo = (story: Story) => {
+    setToDoItems([...toDoItems, story]);
   };
 
   return (
     <>
-      <h1 className='main_header'>Add An Item</h1>
-      <ItemAdder onAdd={addToDo} />
-      <h1 className='to_do_list_header'>To Do</h1>
-      <ToDoList
-        toDoItems={toDoItems}
-        removeItem={(uuid: string) => {
-          console.log(`Removing ${uuid}`);
-        }}
-      />
+      <div className='todo_entry_adder'>
+        <ItemAdder onAdd={addToDo} />
+      </div>
+      <div className='todo_entry_list'>
+      </div>
     </>
   );
 }

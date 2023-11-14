@@ -1,0 +1,37 @@
+.todo_entry_adder {
+    margin: 0 auto;
+    width: 30%
+}
+
+.todo_form label {
+    display: inline-block;
+    width: 100%;
+    margin: 0.3em 0em;
+}
+
+.todo_form label p {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 20%;
+}
+
+.todo_form label .input_full {
+    position: relative;
+    width: 98%;
+    height: 2em;
+    font-size: 1.1em;
+}
+
+.todo_form label .input_multi {
+    width: 98%;
+    height: 5em;
+    margin: 0;
+}
+
+.todo_form label .submit_button {
+    display: block;
+    margin: 0 auto;
+    width: 30%;
+    height: 2.5em;
+}

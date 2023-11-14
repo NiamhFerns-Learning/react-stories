@@ -1,5 +1,5 @@
 import { SyntheticEvent, useState } from 'react';
-import { ToDoItem } from './ToDoItem';
+import { Story } from './Story';
 
 const statusOptions = [
   'not_started',
@@ -9,32 +9,29 @@ const statusOptions = [
   'completed',
 ];
 
-export function ItemAdder({ onAdd }: { onAdd: (item: ToDoItem) => void }) {
+export function ItemAdder({ onAdd }: { onAdd: (item: Story) => void }) {
   // Change this to be individual state vars.
   const [form, setForm] = useState({
     title: '',
     description: '',
-    added: '',
-    completed: '',
+    dueDate: '',
     status: '',
   });
 
   const handleSubmit = (e: SyntheticEvent): void => {
     e.preventDefault();
     onAdd(
-      new ToDoItem(
+      new Story(
         form.title,
         form.description,
-        form.added,
-        form.completed,
+        form.dueDate,
         form.status,
       ),
     );
     setForm({
       title: '',
       description: '',
-      added: '',
-      completed: '',
+      dueDate: '',
       status: '',
     });
     console.log('Form submitted.');
@@ -45,7 +42,6 @@ export function ItemAdder({ onAdd }: { onAdd: (item: ToDoItem) => void }) {
       <form onSubmit={handleSubmit} className='todo_form'>
         <div>
           <label>
-            Title
             <input
               type='text'
               placeholder='What to do?'
@@ -53,13 +49,14 @@ export function ItemAdder({ onAdd }: { onAdd: (item: ToDoItem) => void }) {
               onChange={(e) => {
                 setForm({ ...form, title: e.target.value });
               }}
+              className='input_full'
               required
             ></input>
           </label>
         </div>
         <div>
           <label>
-            Description
+            <p>Description</p>
             <input
               type='text'
               placeholder='Describe your task...'
@@ -67,44 +64,34 @@ export function ItemAdder({ onAdd }: { onAdd: (item: ToDoItem) => void }) {
               onChange={(e) => {
                 setForm({ ...form, description: e.target.value });
               }}
+              className='input_multi'
               required
             ></input>
           </label>
         </div>
         <div>
           <label>
-            Date Added
+            <p>Due Date</p>
             <input
               type='date'
-              value={form.added}
+              value={form.dueDate}
               onChange={(e) => {
-                setForm({ ...form, added: e.target.value });
+                setForm({ ...form, dueDate: e.target.value });
               }}
+              className='input_standard'
             ></input>
           </label>
         </div>
         <div>
           <label>
-            Date Completed
-            <input
-              type='date'
-              value={form.completed}
-              onChange={(e) => {
-                setForm({ ...form, completed: e.target.value });
-              }}
-            ></input>
-          </label>
-        </div>
-        <div>
-          <label>
-            Status
+            <p>Status</p>
             <select
               name='status'
               id='status'
-              value={'Not Started'}
               onChange={(e) => {
                 setForm({ ...form, status: e.target.value });
               }}
+              className='input_standard'
             >
               {statusOptions.map((option) => (
                 <option key={option} value={option}>
@@ -119,7 +106,11 @@ export function ItemAdder({ onAdd }: { onAdd: (item: ToDoItem) => void }) {
         </div>
         <div>
           <label>
-            <input type='submit' value='Add To-Do'></input>
+            <input
+              type='submit'
+              value='Add Story'
+              className='submit_button'
+            ></input>
           </label>
         </div>
       </form>
