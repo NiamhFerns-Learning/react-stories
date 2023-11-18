@@ -1,4 +1,4 @@
-import { Story, StoryList } from './Story';
+import { StoryData, StoryListData } from './Story';
 
     // <>
     //   <div className='to_do_list'>

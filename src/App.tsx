@@ -1,20 +1,21 @@
 import { SyntheticEvent, useState } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import { Story } from './Story';
-import { ItemAdder } from './ItemAdder';
+import { StoryData, StoryListData } from './Story';
+import { StoryAdder } from './StoryAdder';
 
 function App() {
-  const [toDoItems, setToDoItems] = useState<Story[]>([]);
+  const [stories, setStories] = useState<StoryData[]>([]);
+  const [storyLists, setStoryLists] = useState<StoryListData[]>([]);
 
-  const addToDo = (story: Story) => {
-    setToDoItems([...toDoItems, story]);
+  const addToDo = (story: StoryData) => {
+    setStories([...stories, story]);
   };
 
   return (
     <>
       <div className='todo_entry_adder'>
-        <ItemAdder onAdd={addToDo} />
+        <StoryAdder onAdd={addToDo} />
       </div>
       <div className='todo_entry_list'>
       </div>

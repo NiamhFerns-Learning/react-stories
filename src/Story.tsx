@@ -1,9 +1,11 @@
-export class Story {
+export class StoryData {
   constructor(
+    readonly uuid: string,
     readonly title: string,
     readonly description: string,
     readonly dueDate: string,
     readonly status: string,
+    readonly list: string, // The uuid for a StoryList
   ) { }
 
   format() {
@@ -11,14 +13,15 @@ export class Story {
   }
 }
 
-export class StoryList {
+export class StoryListData {
   constructor(
-    readonly title: string,
+    readonly uuid: string,
+    readonly name: string,
     readonly description: string,
-    readonly stories: Story[],
+    readonly stories: StoryData[],
   ) { }
 
   format() {
-    return `{${this.title}\n${this.description}\n${this.stories}}}`;
+    return `{${this.name}\n${this.description}\n${this.stories}}}`;
   }
 }

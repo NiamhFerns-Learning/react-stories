@@ -1,5 +1,5 @@
 import { SyntheticEvent, useState } from 'react';
-import { Story } from './Story';
+import { StoryData, StoryListData } from './Story';
 
 const statusOptions = [
   'not_started',
@@ -9,30 +9,36 @@ const statusOptions = [
   'completed',
 ];
 
-export function ItemAdder({ onAdd }: { onAdd: (item: Story) => void }) {
+export function StoryAdder({ onAdd }: { onAdd: (item: StoryData) => void }) {
   // Change this to be individual state vars.
   const [form, setForm] = useState({
+    uuid: '',
     title: '',
     description: '',
     dueDate: '',
     status: '',
+    list: '',
   });
 
   const handleSubmit = (e: SyntheticEvent): void => {
     e.preventDefault();
     onAdd(
-      new Story(
+      new StoryData(
+        '',
         form.title,
         form.description,
         form.dueDate,
         form.status,
+        '',
       ),
     );
     setForm({
+      uuid: '',
       title: '',
       description: '',
       dueDate: '',
       status: '',
+      list: '',
     });
     console.log('Form submitted.');
   };
