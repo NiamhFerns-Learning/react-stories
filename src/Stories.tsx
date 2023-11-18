@@ -7,7 +7,8 @@ export function Stories({
 }: {
   stories: StoryData[];
   lists: StoryListData[];
-  removeItem: (storyID: string) => {};
+  onNewList: (item: StoryListData) => void;
+  removeItem: (uuid: string) => void;
 }) {
   return (
     <>

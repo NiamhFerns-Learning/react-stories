@@ -9,7 +9,13 @@ const statusOptions = [
   'completed',
 ];
 
-export function StoryAdder({ onAdd }: { onAdd: (item: StoryData) => void }) {
+export function StoryAdder({
+  onNewStory,
+  lists,
+}: {
+  onNewStory: (item: StoryData) => void;
+  lists: StoryListData[];
+}) {
   // Change this to be individual state vars.
   const [form, setForm] = useState({
     uuid: '',
@@ -17,19 +23,19 @@ export function StoryAdder({ onAdd }: { onAdd: (item: StoryData) => void }) {
     description: '',
     dueDate: '',
     status: '',
-    list: '',
+    list: '0',
   });
 
   const handleSubmit = (e: SyntheticEvent): void => {
     e.preventDefault();
-    onAdd(
+    onNewStory(
       new StoryData(
         '',
         form.title,
         form.description,
         form.dueDate,
         form.status,
-        '',
+        form.list,
       ),
     );
     setForm({
@@ -38,7 +44,7 @@ export function StoryAdder({ onAdd }: { onAdd: (item: StoryData) => void }) {
       description: '',
       dueDate: '',
       status: '',
-      list: '',
+      list: '0',
     });
     console.log('Form submitted.');
   };
@@ -46,6 +52,7 @@ export function StoryAdder({ onAdd }: { onAdd: (item: StoryData) => void }) {
   return (
     <>
       <form onSubmit={handleSubmit} className='todo_form'>
+        {/* TITLE/NAME */}
         <div>
           <label>
             <input
@@ -60,6 +67,8 @@ export function StoryAdder({ onAdd }: { onAdd: (item: StoryData) => void }) {
             ></input>
           </label>
         </div>
+
+        {/* DESCRIPTION */}
         <div>
           <label>
             <p>Description</p>
@@ -75,6 +84,8 @@ export function StoryAdder({ onAdd }: { onAdd: (item: StoryData) => void }) {
             ></input>
           </label>
         </div>
+
+        {/* DUE DATE */}
         <div>
           <label>
             <p>Due Date</p>
@@ -88,6 +99,8 @@ export function StoryAdder({ onAdd }: { onAdd: (item: StoryData) => void }) {
             ></input>
           </label>
         </div>
+
+        {/* STATUS */}
         <div>
           <label>
             <p>Status</p>
@@ -110,6 +123,29 @@ export function StoryAdder({ onAdd }: { onAdd: (item: StoryData) => void }) {
             </select>
           </label>
         </div>
+
+        {/* LIST */}
+        <div>
+          <label>
+            <p>List</p>
+            <select
+              name='list'
+              id='list'
+              onChange={(e) => {
+                setForm({ ...form, list: e.target.value });
+              }}
+              className='input_standard'
+            >
+              {lists.map((option) => (
+                <option key={option.uuid} value={option.uuid}>
+                  {option.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        {/* SUBMIT */}
         <div>
           <label>
             <input
