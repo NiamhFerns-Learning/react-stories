@@ -35,3 +35,17 @@
     width: 30%;
     height: 2.5em;
 }
+
+#story_lists {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.list_container {
+    width: 20em;
+}
+
+.story_container {
+    display: flex;
+}

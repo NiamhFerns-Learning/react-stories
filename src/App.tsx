@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from 'react';
+import { useState } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import { StoryData, StoryListData } from './Story';
@@ -22,13 +22,16 @@ function App() {
   return (
     <>
       <div className='todo_entry_adder'>
+        <h1>Stories</h1>
         <StoryAdder onNewStory={addStory} lists={storyLists} />
       </div>
       <div className='todo_entry_list'>
         <Stories
           stories={stories}
           lists={storyLists}
-          removeItem={(uuid: string): void => console.log(uuid)}
+          removeItem={(uuid: string): void =>
+            setStories(stories.filter((story) => story.uuid !== uuid))
+          }
           onNewList={addStoryList}
         />
       </div>

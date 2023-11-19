@@ -1,5 +1,6 @@
 import { SyntheticEvent, useState } from 'react';
 import { StoryData, StoryListData } from './Story';
+import { v4 as uuid } from 'uuid';
 
 const statusOptions = [
   'not_started',
@@ -18,7 +19,6 @@ export function StoryAdder({
 }) {
   // Change this to be individual state vars.
   const [form, setForm] = useState({
-    uuid: '',
     title: '',
     description: '',
     dueDate: '',
@@ -30,7 +30,7 @@ export function StoryAdder({
     e.preventDefault();
     onNewStory(
       new StoryData(
-        '',
+        uuid(),
         form.title,
         form.description,
         form.dueDate,
@@ -39,14 +39,12 @@ export function StoryAdder({
       ),
     );
     setForm({
-      uuid: '',
       title: '',
       description: '',
       dueDate: '',
       status: '',
       list: '0',
     });
-    console.log('Form submitted.');
   };
 
   return (
