@@ -59,7 +59,7 @@ export function Stories({
           </div>
         </div>
       ))}
-      <div className='list_container'>
+      <div className='list_container list_adder'>
         <form onSubmit={handleSubmit} className='new_list'>
           <div>
             <label>

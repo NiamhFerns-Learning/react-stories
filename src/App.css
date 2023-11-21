@@ -1,3 +1,15 @@
+body {
+    background-color: #202020;
+    color: #CCCCCC;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
 .todo_entry_adder {
     margin: 0 auto;
     width: 30%
@@ -21,12 +33,14 @@
     width: 98%;
     height: 2em;
     font-size: 1.1em;
+    font-family: arial;
 }
 
 .todo_form label .input_multi {
     width: 98%;
     height: 5em;
     margin: 0;
+    font-family: arial;
 }
 
 .todo_form label .submit_button {
@@ -37,15 +51,42 @@
 }
 
 #story_lists {
-    width: 90%;
+    width: 90vw;
+    height: 50vh;
     margin: 0 auto;
     display: flex;
+    gap: 1em;
+    background-color: #424242;
+    padding: 1em;
+    overflow-x: scroll;
+    margin-top: 3em;
 }
 
 .list_container {
-    width: 20em;
+    min-width: 19.5em;
+    background-color: #313131;
+    padding: 0.5em;
+    overflow-y: scroll;
+}
+
+.list_adder {
+    min-width: 19em;
+    padding: 1em;
+}
+
+.list_adder input {
+    width: 97%;
+    height: 2em;
+    margin-bottom: 1em;
 }
 
 .story_container {
+    margin: 1em 1em;
     display: flex;
+    align-items: center;
+    background-color: #1c3c3c;
+}
+
+.story_actions {
+    margin-left: auto;
 }

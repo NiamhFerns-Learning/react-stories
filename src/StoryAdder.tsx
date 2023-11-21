@@ -70,8 +70,7 @@ export function StoryAdder({
         <div>
           <label>
             <p>Description</p>
-            <input
-              type='text'
+            <textarea
               placeholder='Describe your task...'
               value={form.description}
               onChange={(e) => {
@@ -79,7 +78,7 @@ export function StoryAdder({
               }}
               className='input_multi'
               required
-            ></input>
+            ></textarea>
           </label>
         </div>
 
